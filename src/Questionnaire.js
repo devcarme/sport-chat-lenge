@@ -227,6 +227,7 @@ class Questionnaire extends Component {
                   onChangeRadio={this.addResponse}
                   idResponsesQuestions={this.state.idResponsesQuestions}
                   isAlreadyAnswered={this.state.isAlreadyAnswered}
+                  idQuestionnaire={this.state.idQuestionnaire}
                 />
               </div>
               ))}

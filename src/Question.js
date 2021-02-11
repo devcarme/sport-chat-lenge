@@ -10,18 +10,25 @@ function Question (props) {
 
   const [response, setResponse] = useState(null);
   const [details, idReponsesQuestions] = props;
+  const [pseudo, setPseudo] = useState("");
 
   const handleChange = (event) =>{
       var arrayResponse = {idQuestion: props.details.idQuestion, response: event.currentTarget.value}
       props.onChangeRadio(arrayResponse);
   };
 
+  const getPseudo = () =>{
+    fetch(globals.url + "getPseudo", requestOptions)
+      .then(res => res.json())
+      .then(res => setPseudo(res))
+  }
+
   const handleCheckYes = (event) =>{
     if(props.isAlreadyAnswered){
       event.preventDefault();
     }else{
-      document.getElementById(`custom-radio-1${props.details.idQuestion}`).checked = true;
-      document.getElementById(`custom-radio-2${props.details.idQuestion}`).checked = false;
+      document.getElementById(`custom-radio-1${props.details.idQuestion}${idReponsesQuestion}${pseudo}`).checked = true;
+      document.getElementById(`custom-radio-2${props.details.idQuestion}${idReponsesQuestion}${pseudo}`).checked = false;
       handleChange(event);
     }
   };
@@ -30,8 +37,8 @@ function Question (props) {
     if(props.isAlreadyAnswered){
       event.preventDefault();
     }else{
-      document.getElementById(`custom-radio-2${props.details.idQuestion}`).checked = true;
-      document.getElementById(`custom-radio-1${props.details.idQuestion}`).checked = false;
+      document.getElementById(`custom-radio-2${props.details.idQuestion}${idReponsesQuestion}${pseudo}`).checked = true;
+      document.getElementById(`custom-radio-1${props.details.idQuestion}${idReponsesQuestion}${pseudo}`).checked = false;
       handleChange(event);
     }
   };
@@ -40,7 +47,7 @@ function Question (props) {
     const requestOptions = {
       method: 'POST',
       headers: {"Content-type": "application/json; charset=UTF-8"},
-      body: JSON.stringify({idQuestion: props.details.idQuestion, idResponsesQuestions: idReponsesQuestions})
+      body: JSON.stringify({idQuestion: props.details.idQuestion, idResponsesQuestions: props.idResponsesQuestions})
     };
   
     fetch(globals.url + "getResponse", requestOptions)
@@ -49,9 +56,9 @@ function Question (props) {
         if(res.ok){
           setResponse(res.reponse)
           if(res.reponse === 1){
-            document.getElementById(`custom-radio-1${props.details.idQuestion}`).checked = true;
+            document.getElementById(`custom-radio-1${props.details.idQuestion}${idReponsesQuestion}${pseudo}`).checked = true;
           } else if(res.reponse === 0){
-            document.getElementById(`custom-radio-2${props.details.idQuestion}`).checked = true;
+            document.getElementById(`custom-radio-2${props.details.idQuestion}${idReponsesQuestion}${pseudo}`).checked = true;
           }
         }
       })
@@ -59,6 +66,7 @@ function Question (props) {
 
   useEffect(()=> {
     getResponse();
+    getPseudo();
   },[])
 
   return (
@@ -66,15 +74,15 @@ function Question (props) {
       <h2>{props.details.texteQuestion}</h2>
       <div className="row justify-content-center">
         <div className="form-check">
-          <input onClick={handleCheckYes} className="form-check-input" type="radio" name={`radio-group${props.details.idQuestion}`} id={`custom-radio-1${props.details.idQuestion}`} value="1"
+          <input onClick={handleCheckYes} className="form-check-input" type="radio" name={`radio-group${props.details.idQuestion}${idReponsesQuestion}${pseudo}`} id={`custom-radio-1${props.details.idQuestion}${idReponsesQuestion}${pseudo}`} value="1"
           />
-          <label className="form-check-label" for={`custom-radio-1${props.details.idQuestion}`}>
+          <label className="form-check-label" for={`custom-radio-1${props.details.idQuestion}${idReponsesQuestion}${pseudo}`}>
             Oui
           </label>
         </div>
         <div className="form-check ml-5">
-          <input onClick={handleCheckNo} class="form-check-input" type="radio" name={`radio-group${props.details.idQuestion}`} id={`custom-radio-2${props.details.idQuestion}`} value="0" />
-          <label className="form-check-label" for={`custom-radio-2${props.details.idQuestion}`}>
+          <input onClick={handleCheckNo} class="form-check-input" type="radio" name={`radio-group${props.details.idQuestion}${idReponsesQuestion}${pseudo}`} id={`custom-radio-2${props.details.idQuestion}${idReponsesQuestion}${pseudo}`} value="0" />
+          <label className="form-check-label" for={`custom-radio-2${props.details.idQuestion}${idReponsesQuestion}${pseudo}`}>
             Non
           </label>
         </div>
