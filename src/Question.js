@@ -9,6 +9,7 @@ import globals from "./config/globals";
 function Question (props) {
 
   const [response, setResponse] = useState(null);
+  const [details, idReponsesQuestions] = props;
 
   const handleChange = (event) =>{
       var arrayResponse = {idQuestion: props.details.idQuestion, response: event.currentTarget.value}
@@ -39,7 +40,7 @@ function Question (props) {
     const requestOptions = {
       method: 'POST',
       headers: {"Content-type": "application/json; charset=UTF-8"},
-      body: JSON.stringify({idQuestion: props.details.idQuestion, idResponsesQuestions: props.idResponsesQuestions})
+      body: JSON.stringify({idQuestion: props.details.idQuestion, idResponsesQuestions: idReponsesQuestions})
     };
   
     fetch(globals.url + "getResponse", requestOptions)
