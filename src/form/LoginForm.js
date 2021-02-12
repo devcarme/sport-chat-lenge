@@ -10,6 +10,7 @@ class LoginForm extends Component{
     }
 
     handleForgotPassword = () =>{
+        const { history } = this.props;
         history.push("/forgotPassword");
     }
 
