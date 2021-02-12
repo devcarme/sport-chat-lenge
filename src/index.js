@@ -13,6 +13,7 @@ import LoginForm from "./form/LoginForm";
 import Questionnaires from "./Questionnaires";
 import Questionnaire from "./Questionnaire";
 import ValidationQuestionnaire from "./ValidationQuestionnaire";
+import ForgotPassword from "./ForgotPassword";
 
 function Content(){
     let history = useHistory();
@@ -76,6 +77,7 @@ class Index extends Component{
                     <Route path="/questionnaires" component={Questionnaires}/>
                     <Route path="/questionnaire/:idQuestionnaire" component={Questionnaire}/>
                     <Route path="/validationQuestionnaire" component={ValidationQuestionnaire}/>
+                    <Route path="/forgotPassword" component={ForgotPassword}/>
                 </Switch>
             </Router>
         )
