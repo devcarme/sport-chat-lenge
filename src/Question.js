@@ -11,7 +11,7 @@ function Question (props) {
   const [response, setResponse] = useState(null);
   const [pseudo, setPseudo] = useState("");
   const idReponsesQuestions = props.idResponsesQuestions;
-
+  
   const handleChange = (event) =>{
       var arrayResponse = {idQuestion: props.details.idQuestion, response: event.currentTarget.value}
       props.onChangeRadio(arrayResponse);

@@ -30,7 +30,7 @@ class Questionnaire extends Component {
       error:"",
       isAlreadyAnswered: false,
       indexResponse: 0,
-      idResponsesQuestions: null
+      idResponsesQuestions: "test"
     };
   }
 
