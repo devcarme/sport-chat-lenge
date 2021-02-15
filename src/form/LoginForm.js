@@ -9,10 +9,10 @@ class LoginForm extends Component{
         error:""
     }
 
-    handleForgotPassword = () =>{
-        const { history } = this.props;
-        history.push("/forgotPassword");
-    }
+    // handleForgotPassword = () =>{
+    //     const { history } = this.props;
+    //     history.push("/forgotPassword");
+    // }
 
     handleChangePseudo = (event) => {
         this.setState({pseudo: event.currentTarget.value});
@@ -49,7 +49,7 @@ class LoginForm extends Component{
                             <Button variant="primary btn-block" type="submit" className="button" >
                                 Connexion
                             </Button>
-                            <h1><a onClick={this.handleForgotPassword()}>Mot de passe oublié ?</a></h1>
+                            {/* <h1><a onClick={this.handleForgotPassword()}>Mot de passe oublié ?</a></h1> */}
                         </Col>
                     </Row>
                 </Form>
