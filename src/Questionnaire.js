@@ -239,7 +239,7 @@ class Questionnaire extends Component {
             <Button variant="secondary" style={{float:"right"}} onClick={this.handleClickCancel}>Annuler</Button>
             {this.state.responses.size === this.state.questionsNumber && !this.state.isAlreadyAnswered 
               ?<Button variant="primary mr-5" type="submit" className="button" style={{float:"right"}}>Envoyer</Button>
-              :<Button variant="primary mr-5" type="submit" className="button" style={{float:"right", display:"none"}}>Envoyer</Button>
+              :<Button variant="primary mr-5" type="submit" className="button" style={{float:"right"}}>Envoyer</Button>
             }
             
         </Form>
